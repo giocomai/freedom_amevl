@@ -4,8 +4,17 @@ $decoration = $this->themeSetting('image_decoration');
 ?>
 <?php if ($resourceMedia): ?>
 <div class="media-embeds <?php echo is_array($decoration) && in_array('media', $decoration) ? 'decoration' : ''; ?>">
-    <?php foreach ($resourceMedia as $media): ?>
-    <?php echo $media->render(); ?>
+    <?php foreach ($resourceMedia as $media): 
+    
+          echo $media->render();
+    
+          if (sizeof($media->values())>1 || sizeof($resourceMedia)>1):
+            echo $media->displayValues();
+          endif;
+    
+    ?>
+    
     <?php endforeach; ?>
 </div>
+<hr />
 <?php endif; ?>
