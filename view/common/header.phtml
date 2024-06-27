@@ -3,15 +3,29 @@
 	<?php echo $userBar; ?>
 
 	<div class="main-header__top-bar container">
-		<a class="main-header__advanced-search" href="<?php echo $site->url() . '/item/search'; ?>">Advanced Search</a>
 		<div class="main-header__search-form">
 			<?php echo $this->partial('common/search-form'); ?>
 		</div>
+					<?php if ($this->themeSetting('logo')): ?>
+				<img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" alt="<?php echo $this->escapeHtml( $site->title() ); ?>"  style="max-width: 200px;float:right;margin-left:10px;"/>
+			<?php endif; ?>
 	</div>
 	<hr class="alignfull">
 
 	<div class="main-header__main-bar container">
 		<div class="main-header__site-title">
+		
+ <?php if ($this->themeSetting('header_layout')==='combo'): ?>
+ 
+			<a href="<?php echo $site->url(); ?>">
+ 			
+ 			<h1><?php echo $this->escapeHtml( $site->title() ); ?></h1>
+ 			
+			</a>
+ 
+ 
+ <?php else: ?>
+ 
 			<a href="<?php echo $site->url(); ?>">
 			<?php if ($this->themeSetting('logo')): ?>
 				<img src="<?php echo $this->themeSettingAssetUrl('logo'); ?>" alt="<?php echo $this->escapeHtml( $site->title() ); ?>" />
@@ -19,6 +33,8 @@
 				<?php echo $this->escapeHtml( $site->title() ); ?>
 			<?php endif; ?>
 			</a>
+			
+			<?php endif; ?>
 		</div>
 
 		<nav class="main-navigation">
@@ -29,6 +45,7 @@
 					'maxDepth' => $this->themeSetting('nav_depth') - 1
 				]);
 				?>
+
 			</div>
 			<div class="main-navigation__toggle">
 				<span></span>
