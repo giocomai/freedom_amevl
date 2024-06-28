@@ -125,3 +125,21 @@ font-weight: bold;
   font-family: Open Sans;
   line-height: 0.7em;
 }
+
+.main-footer__bottom {
+  background-color: white;
+  color: #B7410E;
+  text-align: center;
+}
+
+.main-footer__copyright {
+  text-align: center;
+  color: black;
+  font-size: 1.5em;
+}
+
+.main-footer__copyright a {
+  text-align: center;
+  color:#802d09;
+  font-family: Open Sans;
+}
