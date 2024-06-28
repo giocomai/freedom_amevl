@@ -1,0 +1,127 @@
+@font-face {
+    font-family: Jost;
+    src: url("/themes/freedom_amevl/asset/font/Jost-400-Book.ttf") format("truetype");
+}
+
+ @font-face {
+  font-family: Jost;
+  src: url("/themes/freedom_amevl/asset/font/Jost-700-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+
+@font-face {
+    font-family: Open Sans;
+    src: url("/themes/freedom_amevl/asset/font/OpenSans-Regular.ttf") format("truetype");
+}
+ 
+@font-face {
+    font-family: Open Sans;
+    src: url("/themes/freedom_amevl/asset/font/OpenSans-Bold.ttf") format("truetype");
+    font-weight: bold;
+}
+
+
+
+
+body {
+font-size:1.2em;
+font-family: Open Sans;
+word-wrap: break-word;
+}
+
+
+body a:hover{
+  color: #B7410E;
+}
+
+body a {
+  color: #802d09;
+}
+
+.main-header__main-bar {
+  display:flex;
+  align-items: first baseline;
+  justify-content: space-between;
+}
+
+.main-header__main-bar .container {
+
+}
+
+.main-header__site-title {
+  max-width: 66%;
+}
+
+h1, .h1 .main-header__site-title {
+  font-family: Jost;
+  font-variant: small-caps;
+  font-weight: bold;
+  font-size: 1.4em;
+  color: #B7410E;
+  text-decoration: none;
+}
+
+.main-header__site-title a {
+  text-decoration: none;
+}
+
+/* remove the following to keep menu on top */
+.main-header {
+  position: absolute;
+}
+
+.main-navigation .navigation > li {
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .preview-block h4, .site-title .preview-block h1, .h5, h6, .h6 {
+font-family: Jost;
+font-weight: bold;
+}
+
+#searchforminputhomepage {
+  height:2em;
+  max-width:360px;
+  margin:auto;
+  border: solid 1px;
+}
+
+#centerwhiteboxcover {
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+#whiteboxcover {
+  background:rgba(255,255,255,0.7);
+  max-width:660px;
+  border-radius: 25px;
+  padding-bottom:40px;
+  padding-top:20px;
+  padding-left:30px;
+  padding-right:30px;
+  text-align:center;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+#lensbuttonhomepage {
+  background-image:url('/themes/freedom_amevl/asset/img/lente_nera.png');
+  background-color: transparent;
+  width:80px;
+  background-repeat: no-repeat;
+}
+
+#testosottoboxricercahomepage {
+  font-size:0.7em;
+  color:#B7410E;
+  font-family: Open Sans;
+  line-height: 0.7em;
+  margin-top: 10px;
+}
+
+#testosottoboxricercahomepage a {
+  font-size:0.7em;
+  color:#802d09;
+  font-family: Open Sans;
+  line-height: 0.7em;
+}
