@@ -14,7 +14,7 @@ $this->headMeta()->setCharset('utf-8');
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1');
 $this->headTitle($siteTitle)->setSeparator(' · ');
 $this->headTitle()->append($this->setting('installation_title', 'Omeka S'));
-$this->headLink()->prependStylesheet($this->assetUrl('css/style.css'));
+$this->headLink()->prependStylesheet($this->assetUrl('css/style.css?ver=04'));
 $this->headLink()->prependStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
 $this->headLink()->prependStylesheet('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap');
 $this->headLink()->prependStylesheet('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
@@ -22,7 +22,7 @@ $this->headScript()->prependFile($this->assetUrl('js/global.js', 'Omeka'));
 $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));
 
         
-$this->headLink()->appendStylesheet($this->assetUrl('css/custom.css'));        
+$this->headLink()->appendStylesheet($this->assetUrl('css/custom.css?ver=08'));        
       
 
 $this->jsTranslate();
@@ -65,7 +65,62 @@ if ($userBar) {
 
 		<?php echo $this->partial('common/banner'); ?>
 
+            <!-- modifica homepage -->
+<?php
+$path =  $_SERVER["REQUEST_URI"];
+   
+if ($path == "/s/archivio/page/homepage"): ?>
+<style type="text/css">
+::placeholder { 
+font-size:1em;
+font-style: normal;
+}
+
+input[type="text"] {
+ font-size:1em;
+}
+
+#search {
+display:none;
+}
+
+</style>
+
+<div style="background-image: url('/themes/freedom_amevl/asset/img/old_letters.jpg');background-size: cover;background-position: center;padding-bottom:100px;padding-top:80px;margin-top:0px;">
+
+<div id="centerwhiteboxcover">
+<div id="whiteboxcover">
+<h2 style = "text-align:center;">COSA STAI CERCANDO?</h2>
+            <div id="search-homepage" style="text-align:center;font-size:2em;display:inline-block;">
+              <div class="search">
+                <?php echo $this->partial('common/search-form-homepage'); ?>
+            </div>
+            <div id = "testosottoboxricercahomepage">
+            <b><a href="/s/pubblicazioni-sulla-valle-dei-laghi/page/home-page">Per cercare tra le pubblicazioni, visita la sezione dedicata</a></b></div>
+          </div>
+          </div>  
+            
+            </div></div></div>
+
+                <?php else: ?>
+                <style type="text/css">
+                
+                #mostreapprofondimenti img {
+                width: 250px;
+                }
+
+
+                </style>
+               
+                <?php endif; ?>
+
+
+
+  <!-- fine modifica homepage -->
+            
+
 		<div id="main-content" class="container" role="main">
+		
 			<?php echo $this->content; ?>
 		</div>
 
