@@ -1,3 +1,112 @@
+<!-- 
+exception
+-->
+
+<?php 
+$sites = $item->sites();
+
+if (count($sites) > 0) {
+    if (in_array($site, $sites)) {
+      echo $this->headMeta()->appendName('robots', 'index');
+    } else {
+      echo $this->headMeta()->appendName('robots', 'noindex');
+    }
+  } else {
+    echo $this->headMeta()->appendName('robots', 'noindex');
+  }
+?> 
+
+
+
+<?php $itemIdCheck = $item->id()?>
+
+<? if ($itemIdCheck == 4850 or $itemIdCheck == 4879 or $itemIdCheck == 4896 or $itemIdCheck == 4902 or $itemIdCheck == 4905 or $itemIdCheck == 4899 or $itemIdCheck == 4901 or $itemIdCheck == 4900 or $itemIdCheck == 4879 or $itemIdCheck == 4903 or $itemIdCheck == 5854 or $itemIdCheck == 6012): ?>
+<style type="text/css">
+
+.resource.show #resource-values {
+width: 100%;
+}
+
+.resource.show .values .resource-link:hover {
+    transform: scale(1.2);
+    display:inline-block;
+}
+.metadata .value.resource .resource-link {
+    transition: transform .2s ease-out;
+    display:block;
+    text-align: center;
+    width: 300px;
+    
+}
+
+   .metadata .value.resource img {
+        width: 300px !important;
+        height: auto;
+    }
+
+    .media-embeds img {
+        width: 400px !important;
+        height: auto;
+    }
+
+
+     .item_sets {
+         display:inline-block;
+         width: 320px;
+         padding: 20px;
+     }
+
+     h4 {
+         display: none;
+     }
+
+     .media-embeds {
+          display:none;
+     }
+
+.media-list {
+display:none;
+}
+
+.site-pages {
+display:none;
+}
+
+#linked-resources {
+display:none;
+}
+
+#resources-linked {
+display:none;
+}
+
+.uv {
+  font-size: 16px;
+}
+
+.metadata dl > .property dd:not(.sidebar-region .metadata dl > .property dd){
+margin-left: 20px;
+font-size: larger;
+}
+
+.metadata dl > .property dt:not(.sidebar-region .metadata dl > .property dt) {
+  float: none;
+    width: 100%;
+    font-size: larger;
+    display: none;
+}
+
+.metadata > dl:nth-child(3) > div:nth-child(1) > dd:nth-child(2) > span:nth-child(1) {
+  display: none;
+}
+</style>
+ 
+<? endif; ?>
+
+<!-- 
+end of exception
+-->
+
 <?php
 $translate = $this->plugin('translate');
 $escape = $this->plugin('escapeHtml');
