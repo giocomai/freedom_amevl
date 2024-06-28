@@ -10,7 +10,7 @@
 
     &.fadeout {
         position: relative;
-        max-height: 6.2rem;
+        max-height: 7.2rem;
         overflow: hidden;
         
         &::after {
@@ -20,7 +20,7 @@
             left: 50%;
             position: absolute;
             right: 0;
-            top: 4.5rem;
+            top: 5.5rem;
         }
     }
 
