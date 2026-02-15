@@ -8,22 +8,21 @@ $bannerHeading = $this->themeSetting('banner_heading');
 $bannerDescription = $this->themeSetting('banner_description');
 $bannerHeightProperty = $bannerHeading || $bannerDescription ? 'min-height' : 'height';
 $primaryColor = $this->themeSetting('primary_color') ?? '#B7410E';
+$secondaryColor = $this->themeSetting('secondary_color') ?? '#394f68';
+$accentColor = $this->themeSetting('accent_color') ?? '#394f68';
 
-$this->htmlElement('html')->setAttribute('lang', $this->lang());
 $this->headMeta()->setCharset('utf-8');
 $this->headMeta()->appendName('viewport', 'width=device-width, initial-scale=1');
 $this->headTitle($siteTitle)->setSeparator(' · ');
 $this->headTitle()->append($this->setting('installation_title', 'Omeka S'));
-$this->headLink()->prependStylesheet($this->assetUrl('css/style.css?ver=05'));
+$this->headLink()->prependStylesheet($this->assetUrl('css/style.css'));
 $this->headLink()->prependStylesheet($this->assetUrl('css/iconfonts.css', 'Omeka'));
 $this->headLink()->prependStylesheet('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap');
 $this->headLink()->prependStylesheet('https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 $this->headScript()->prependFile($this->assetUrl('js/global.js', 'Omeka'));
 $this->headScript()->prependFile($this->assetUrl('vendor/jquery/jquery.min.js', 'Omeka'));
 
-        
-$this->headLink()->appendStylesheet($this->assetUrl('css/custom.css?ver=14'));        
-      
+$this->headLink()->appendStylesheet($this->assetUrl('css/custom.css?ver=22'));     
 
 $this->jsTranslate();
 $this->trigger('view.layout');
@@ -34,7 +33,7 @@ if ($userBar) {
 ?>
 
 <?php echo $this->doctype(); ?>
-<?php echo $this->htmlElement('html'); ?>
+<?php echo $this->htmlElement('html')->setAttribute('lang', $this->lang()); ?>
 	<head>
 		<?php echo $this->headMeta(); ?>
 		<?php echo $this->headTitle(); ?>
@@ -42,10 +41,16 @@ if ($userBar) {
 		<?php echo $this->headStyle(); ?>
 		<?php echo $this->headScript(); ?>
 
-		<style type="text/css" media="screen">
+		<style media="screen">
 			:root {
 				--primary: <?php echo $primaryColor; ?>;
-				--primary-dark: <?php echo $this->ShadeColor($primaryColor, -10); ?>
+				--primary-dark: <?php echo $this->ShadeColor($primaryColor, -10); ?>;
+				--primary-contrast: <?php echo $this->ContrastColor($primaryColor, ['#fff', '#333']); ?>;
+				--secondary: <?php echo $secondaryColor; ?>;
+				--secondary-dark: <?php echo $this->ShadeColor($secondaryColor, -10); ?>;
+				--secondary-contrast: <?php echo $this->ContrastColor($secondaryColor, ['#fff', '#333']); ?>;
+				--accent: <?php echo $accentColor; ?>;
+				--accent-dark: <?php echo $this->ShadeColor($accentColor, -10); ?>;
 			}
 			
 			<?php if($bannerHeightMobile): ?>
@@ -56,6 +61,8 @@ if ($userBar) {
 				}
 			<?php endif; ?>
 		</style>
+		
+				<script defer data-domain="archiviomemoria.ecomuseovalledeilaghi.it" src="https://statistichearchiviomemoria.ecomuseovalledeilaghi.it/js/script.js"></script>
 	</head>
 
 	<?php echo $this->htmlElement('body')->appendAttribute('class', $body_class); ?>
@@ -82,6 +89,10 @@ input[type="text"] {
 
 #search {
 display:none;
+}
+
+#main-content {
+	padding-bottom: 0rem;
 }
 
 </style>
@@ -119,13 +130,12 @@ display:none;
   <!-- fine modifica homepage -->
             
 
-		<div id="main-content" class="container" role="main">
-		
+
+		<div id="content" class="container" role="main" tabindex="-1">
 			<?php echo $this->content; ?>
 		</div>
 
 		<?php echo $this->partial('common/footer'); ?>
-		<?php echo $this->partial('common/menu-drawer'); ?>
 
 		<?php
 		echo $this->inlineScript()

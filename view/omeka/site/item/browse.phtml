@@ -32,6 +32,19 @@ $listState = ($layoutSetting == 'togglelist') ? 'disabled': '';
 $isGrid = (strpos($layoutSetting, 'grid') !== false) ? true : false;
 $bodyTerm = $this->siteSetting('browse_body_property_term');
 $bodyTruncate = $this->themeSetting('truncate_body_property');
+
+if (isset($_GET['view'])) {
+    if ('list' === $_GET['view']) {
+        $gridState = '';
+        $listState = 'disabled';
+        $isGrid = false;
+    } else {
+        $gridState = 'disabled';
+        $listState = '';
+        $isGrid = true;
+    }
+}
+
 $decoration = $this->themeSetting('image_decoration');
 $decorationClass = '';
 
@@ -92,8 +105,8 @@ if (is_array($decoration) && in_array('media', $decoration)) {
 <div class="browse-controls">
     <?php if (strpos($layoutSetting, 'toggle') !== false): ?>
         <div class="layout-toggle">
-            <button type="button" aria-label="<?php echo $translate('Grid'); ?>" class="grid icon-btn o-icon-grid" <?php echo $gridState; ?>></button>
-            <button type="button" aria-label="<?php echo $translate('List'); ?>" class="list icon-btn o-icon-list" <?php echo $listState; ?>></button>
+            <button type="button" aria-label="<?php echo $translate('Grid'); ?>" title="<?php echo $translate('Grid'); ?>" class="grid icon-btn o-icon-grid" <?php echo $gridState; ?>></button>
+            <button type="button" aria-label="<?php echo $translate('List'); ?>" title="<?php echo $translate('List'); ?>" class="list icon-btn o-icon-list" <?php echo $listState; ?>></button>
         </div>
     <?php endif; ?>
     <?php echo $this->browse()->renderSortSelector('items'); ?>
@@ -109,7 +122,9 @@ if (is_array($decoration) && in_array('media', $decoration)) {
     <?php
     foreach ($items as $item):
         $body = $bodyTerm ? $item->value($bodyTerm, ['lang' => ($valueLang)]) : $item->displayDescription(null, ($valueLang));
-        $thumbnail = $this->thumbnail($item, 'large');
+        $media = $item->primaryMedia();
+        $altText = $media ? ($media->altText() ?: $item->displayTitle()) : $item->displayTitle();
+        $thumbnail = $this->thumbnail($item, 'large', ['alt' => $altText]);
         ?>
         <li class="item resource <?php echo ($isGrid) ? '' : 'media-object'; ?>">
             <!-- Thumbnail -->

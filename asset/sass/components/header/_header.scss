@@ -46,18 +46,27 @@
 
         button {
             background: none;
-            color: $color__gray-60;
+            color: $color__placeholder;
             padding: 10px 15px;
+            font-size: 0; /* hide text */
+            position: relative;
+
+            &::before {
+                @include font-awesome;
+                content: "\f002";
+                font-size: 16px;
+            }
 
             &:hover,
             &:focus {
                 background: none;
+                color: $color__main-text;
             }
         }
     }
 
     hr {
-        background-color: $color__secondary;
+        background-color: $color__gray-80;
         margin-bottom: 0;
     }
 
@@ -77,6 +86,7 @@
 
     &__site-title {
         flex-shrink: 0;
+        margin-bottom: 0;
         max-width: 50%;
 
         @media (min-width: $lg) {
@@ -89,9 +99,11 @@
 
         a {
             display: block;
-            font-weight: 600;
-            font-size: 1.2rem;
-            line-height: 1.2;
+            font-family: $font__headings;
+            font-size: $font__h2-sm-size; //40px
+            font-weight: 500;
+            line-height: $font__headings-line-height;
+            text-decoration: none;
         }
 
         img {

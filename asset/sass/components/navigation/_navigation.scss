@@ -9,16 +9,23 @@
     }
 
     &__toggle {
+        display: block;
         width: 35px;
         height: 28px;
         position: relative;
         margin: 20px auto;
         transform: rotate(0deg);
         transition: .5s ease-in-out;
-        cursor: pointer;
+        background-color: transparent;
+        padding: 0;
+        border-radius: 0;
 
         @media (min-width: $lg) {
             display: none;
+        }
+
+        &:hover {
+            background-color: transparent !important;
         }
 
         span {
@@ -34,34 +41,34 @@
             transition: .25s ease-in-out;
         }
 
-        span:nth-child(1) {
+        span:nth-child(2) {
             top: 0px;
             transform-origin: left center;
         }
         
-        span:nth-child(2) {
+        span:nth-child(3) {
             top: 11px;
             transform-origin: left center;
         }
         
-        span:nth-child(3) {
+        span:nth-child(4) {
             top: 22px;
             transform-origin: left center;
         }
     
         &.open {
-            span:nth-child(1) {
+            span:nth-child(2) {
                 transform: rotate(45deg);
                 top: -1px;
                 left: 5px;
             }
             
-            span:nth-child(2) {
+            span:nth-child(3) {
                 width: 0%;
                 opacity: 0;
             }
             
-            span:nth-child(3) {
+            span:nth-child(4) {
                 transform: rotate(-45deg);
                 top: 24px;
                 left: 5px;
@@ -87,17 +94,9 @@
         }
     
         > li { //main menu items
+            display: flex;
             cursor: pointer;
-
-            &:hover,
-            &:focus-within {
-            
-                > ul { //mega menu hover
-                    opacity: 1;
-                    height: auto;
-                    padding: 40px;
-                }
-            }
+            margin-bottom: 0;
     
             &:hover a::after,
             &.focus a::after {
@@ -119,6 +118,39 @@
                         right: 0;
                         margin: auto;
                         transform: scale(1);
+                    }
+                }
+            }
+
+            &.menu-item-has-children {
+                margin-right: 10px;
+
+                a {
+                    margin-right: 5px;
+                }
+
+                button {
+                    align-self: center;
+                    background-color: transparent;
+                    border: none;
+                    line-height: 1;
+                    padding: 3px;
+
+                    &::after {
+                        @include font-awesome;
+                        content: "\f107" !important;
+                        display: inline-block;
+                        font-weight: 600;
+                        font-size: .75rem;
+                        color: $color__primary;
+                    }
+                }
+
+                &.open {
+                    > ul {
+                        display: flex;
+                        height: auto;
+                        padding: 40px;
                     }
                 }
             }
@@ -153,7 +185,7 @@
             }
 
             > ul { //mega menu hidden
-                display: flex;
+                display: none;
                 gap: 40px;
                 transition: opacity 0.5s ease-out;
                 opacity: 0;
@@ -169,6 +201,7 @@
                 padding: 0;
                 width: 100vw;
                 left: 0;
+                top: 100%;
 
                 > li { //mega menu columns
                     max-width: 260px;
@@ -195,14 +228,14 @@
                 }
 
                 a { //all mega menu links
-                    color: $color__secondary-light;
+                    color: $color__secondary-contrast;
                     text-transform: none;
                     text-decoration: none;
                     font-size: 0.94rem;
                     transition: color 0.5s ease;
 
                     &:hover {
-                        color: $color__white;
+                        color: $color__secondary-contrast;
                         text-decoration: underline;
                     }
                     

@@ -4,9 +4,23 @@
     margin-right: auto;
     margin-top: 25px;
 
+    &::after {
+        content: "";
+        clear: both;
+        display: table;
+    }
+
     input,
     select {
         margin-bottom: 8px !important;
+    }
+
+    .field-meta {
+        margin: .25rem 0;
+    }
+
+    button[type="submit"] {
+        float: right;
     }
 
     .advanced-search-content {
@@ -17,13 +31,26 @@
         margin-bottom: 25px;
 
         @media (min-width: $lg) {
-            margin-bottom: -105px;
             position: relative;
             z-index: 1;
         }
 
         > div {
             flex-basis: 100%;
+        }
+    }
+
+    .items.search & {
+        overflow: initial;
+
+        &::after {
+            content: none;
+        }
+
+        .advanced-search-content {
+            @media (min-width: $lg) {
+                margin-bottom: -105px;
+            }
         }
     }
 
@@ -45,7 +72,7 @@
     
             .value {
                 align-items: center;
-                flex-wrap: wrap;
+                flex-wrap: wrap !important;
                 gap: 15px;
     
                 &:first-child .logical-operator:first-child {
@@ -130,10 +157,8 @@
                     > .numeric-datetime-inputs {
                         flex-wrap: wrap;
 
-                        > div {
-                            @media (min-width: $md) {
-                                flex-wrap: nowrap;
-                            }
+                        input:not([type="checkbox"]) {
+                            width: 8em;
                         }
                     }
                 }
@@ -150,25 +175,36 @@
             margin-top: 0 !important;
         }
 
+        .numeric-date-inputs > * {
+            flex-grow: 0;
+        }
+
+        .numeric-date-inputs,
+        .numeric-time-inputs {
+            gap: 4px;
+        }
+
         .numeric-toggle-time {
             align-self: center;
             background-color: $color__white;
-            border-radius: 50%;
-            border: 1px solid $color__hr;
             color: $color__buttons;
             cursor: pointer;
             height: 35px;
             margin: 0.5rem 0 0 0.3rem;
             padding: 5px 9px;
-            width: 35px;
 
-            &:hover {
+            &:hover,
+            &:focus-within {
                 background-color: $color__buttons;
                 color: $color__white;
             }
 
             input[type="checkbox"] {
-                display: none;
+                margin: 0 !important;
+
+                &:focus {
+                    outline: none;
+                }
             }
         }
     }
@@ -217,8 +253,9 @@
 
     #page-actions {
         display: flex;
-        background-color: $color__secondary;
+        background-color: $color__white;
         bottom: 0;
+        box-shadow: 0px -2px 10px 0px rgba($color__black, 0.4);
         gap: 20px;
         justify-content: center;
         margin-left: calc((100vw - 100%) / -2);
@@ -231,6 +268,7 @@
             align-items: flex-end;
             background-color: transparent;
             bottom: 15px;
+            box-shadow: none;
             flex-direction: column;
             gap: 15px;
             justify-content: initial;
@@ -247,6 +285,12 @@
             width: 120px;
         }
     }
+
+    #mapping-geographic-location {
+        .inputs label {
+            font-size: $font__sm-size;
+        }
+    }
 }
 
 .search-filters {
@@ -256,13 +300,24 @@
     margin-bottom: 2rem;
 
     .filter {
+        display: flex;
         background-color: $color__secondary-dark;
         border-radius: 3px;
-        color: $color__secondary-light;
+        color: $color__secondary-contrast;
+        gap: 0;
         padding: 2px 10px;
     }
 
     .filter-label::after {
         content: ":";
+    }
+
+    .filter-value {
+        margin: 0;
+        padding: 0 10px;
+
+        &:not(:last-child) {
+            border-right: 1px solid rgba($color__white, 0.5);
+        }
     }
 }

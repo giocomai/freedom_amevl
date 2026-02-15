@@ -6,14 +6,16 @@ $decoration = $this->themeSetting('image_decoration');
 <div class="media-embeds <?php echo is_array($decoration) && in_array('media', $decoration) ? 'decoration' : ''; ?>">
     <?php foreach ($resourceMedia as $media): 
     
-          echo $media->render();
+          $altText = $media->altText() ?: $media->displayTitle() ?: '';
+          echo $media->render(['thumbnailAttribs' => ['alt' => $altText]]);
     
           if (sizeof($media->values())>1 || sizeof($resourceMedia)>1):
-            echo $media->displayValues();
+            echo $media->displayValues([
+    'excludeProperties' => ['dcterms:created']
+]);
           endif;
     
     ?>
-    
     <?php endforeach; ?>
 </div>
 <hr />

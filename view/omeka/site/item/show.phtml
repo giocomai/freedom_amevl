@@ -20,8 +20,12 @@ if (count($sites) > 0) {
 
 <?php $itemIdCheck = $item->id()?>
 
-<? if ($itemIdCheck == 4850 or $itemIdCheck == 4879 or $itemIdCheck == 4896 or $itemIdCheck == 4902 or $itemIdCheck == 4905 or $itemIdCheck == 4899 or $itemIdCheck == 4901 or $itemIdCheck == 4900 or $itemIdCheck == 4879 or $itemIdCheck == 4903 or $itemIdCheck == 5854 or $itemIdCheck == 6012): ?>
+<?php if ($itemIdCheck == 4850 or $itemIdCheck == 4879 or $itemIdCheck == 4896 or $itemIdCheck == 4902 or $itemIdCheck == 4905 or $itemIdCheck == 4899 or $itemIdCheck == 4901 or $itemIdCheck == 4900 or $itemIdCheck == 4879 or $itemIdCheck == 4903 or $itemIdCheck == 5854 or $itemIdCheck == 6012): ?>
 <style type="text/css">
+
+.main-region hr {
+	display: none;
+}
 
 .resource.show #resource-values {
 width: 100%;
@@ -37,6 +41,10 @@ width: 100%;
     text-align: center;
     width: 300px;
     
+}
+
+.resource-link img {
+  max-width: inherit;
 }
 
    .metadata .value.resource img {
@@ -101,11 +109,12 @@ font-size: larger;
 }
 </style>
  
-<? endif; ?>
+<?php endif; ?>
 
 <!-- 
 end of exception
 -->
+
 
 <?php
 $translate = $this->plugin('translate');
@@ -170,9 +179,5 @@ $rightSidebarHasBlocks = $rightSidebarBlockContent->hasBlocks();
     </div>
 
 <?php endif; ?>
-
-<p class="media-parent-item textcenter">
-    <?php echo sprintf($translate('Part of %s'), $item->link($item->displayTitle(null, $valueLang))); ?>
-</p>
 
 <?php $this->trigger('view.show.after'); ?>

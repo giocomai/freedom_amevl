@@ -10,6 +10,7 @@
     background-color: $color__menu-drawer;
     overflow-x: hidden;
     transition: all 0.3s ease-out;
+    visibility: hidden;
 
     @media screen and (min-width: $lg) {
         transform: translateX( -100% ) !important;
@@ -27,11 +28,12 @@
 
     &.toggled {
         transform: translateX( 0 );
+        visibility: visible;
     }
 
     .navigation-controls {
         border-bottom: 1px solid $color__gray-60;
-        background-color: $color__gray-87;
+        background-color: $color__gray-93;
         font-size: 1.1rem;
         text-align: left;
 
@@ -52,7 +54,7 @@
                 content: '';
                 background-image: url(../img/chevron-right-thin.svg);
                 background-repeat: no-repeat;
-                filter: brightness(0.5);
+                filter: brightness(0.4);
                 background-position: center;
                 background-size: contain;
                 transition: all 0.1s ease-in;
@@ -94,7 +96,7 @@
         a {
             display: block;
             border-bottom: 1px solid $color__gray-60;
-            color: $color__secondary-light;
+            color: $color__secondary-contrast;
             padding: 1rem;
             text-align: left;
             text-decoration: none;

@@ -5,7 +5,7 @@ $escAttr = $this->plugin('escapeHtmlAttr');
 $footerLogo      = $this->themeSetting( 'footer_logo' );
 $footerSiteInfo  = $this->themeSetting( 'footer_site_info' );
 $footerMenu      = $this->themeSetting( 'footer_menu' );
-$footerMenuDepth = $this->themeSetting('footer_menu_depth');
+$footerMenuDepth = (int) $this->themeSetting('footer_menu_depth') ? (int) $this->themeSetting('footer_menu_depth') -1 : -1;
 $footerContent   = $this->themeSetting( 'footer_content' );
 $socialNetworks  = array( 'facebook', 'twitter', 'linkedin', 'instagram', 'youtube', 'mastodon' );
 
@@ -68,7 +68,7 @@ foreach ( $socialNetworks as $social_network ) {
 					<div class="main-footer__col2">
 						<?php
 							echo $site->publicNav()->menu()->renderMenu(null, [
-								'maxDepth' => $footerMenuDepth - 1
+								'maxDepth' => $footerMenuDepth
 							]);
 						?>
 					</div>
@@ -88,9 +88,7 @@ foreach ( $socialNetworks as $social_network ) {
 
 			</div>
 		</div>
-	<?php endif; ?>	
-
-	<hr class="alignfull">
+	<?php endif; ?>
 
 	<!-- Footer Bottom -->
 	<div class="main-footer__bottom">
@@ -101,7 +99,7 @@ foreach ( $socialNetworks as $social_network ) {
 				<div class="main-footer__social-network">
 					<?php foreach ( $socialNetworks as $social_network ) : ?>
 						<?php if ( $social_network_url = $this->themeSetting( "{$social_network}_url" ) ) : ?>
-							<a href="<?php echo $social_network_url; ?>">
+							<a href="<?php echo $escAttr($social_network_url); ?>">
 								<img src="<?php echo $this->assetUrl( "img/{$social_network}.svg" ); ?>"
 									alt="<?php echo $escAttr( $social_network ); ?>">
 							</a>

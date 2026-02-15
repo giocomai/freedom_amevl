@@ -56,7 +56,7 @@ h1, .h1 .main-header__site-title {
   font-family: Jost;
   font-variant: small-caps;
   font-weight: bold;
-  font-size: 1.4em;
+  font-size: 0.82em;
   color: #B7410E;
   text-decoration: none;
 }
@@ -142,4 +142,64 @@ font-weight: bold;
   text-align: center;
   color:#802d09;
   font-family: Open Sans;
+}
+
+/*
+.media-parent-item.textcenter {
+  display: none;
+}
+*/
+
+/* in grid views, let vertical images be vertical and centered*/
+
+.resource-grid .resource__thumbnail img {
+	width: revert;
+	align-content: center;
+	text-align: center;
+	margin: auto;
+	margin-right: auto;
+	margin-left: auto;
+	display: block;
+}
+
+/*  linked media all must look the same */
+
+.resource-link img {
+  max-width: 60px;
+  margin-right: 1rem;
+}
+
+
+.resource .description {
+    white-space: -moz-pre-wrap; /* Mozilla */
+    white-space: -hp-pre-wrap; /* HP printers */
+    white-space: -o-pre-wrap; /* Opera 7 */
+    white-space: -pre-wrap; /* Opera 4-6 */
+    white-space: pre-wrap; /* CSS 2.1 */
+    white-space: pre-line; /* CSS 3 (and 2.1 as well, actually) */
+    word-wrap: break-word; /* IE */
+    word-break: break-word;
+
+    &.fadeout {
+        position: relative;
+        max-height: 7.2rem;
+        overflow: hidden;
+        
+        &::after {
+            content: "";
+            background: linear-gradient(to right, rgba($color__white, 0), rgba($color__white, 1) 60%);
+            height: 1.7rem;
+            left: 50%;
+            position: absolute;
+            right: 0;
+            top: 5.5rem;
+        }
+    }
+
+    &.ellipsis {
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }    
 }
