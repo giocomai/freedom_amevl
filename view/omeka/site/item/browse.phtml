@@ -121,7 +121,7 @@ if (is_array($decoration) && in_array('media', $decoration)) {
 
     <?php
     foreach ($items as $item):
-            $body = $bodyTerm ? $item->value($bodyTerm, ['lang' => $valueLang]) : $escape($item->displayDescription(null, $valueLang));
+            $body = $bodyTerm ? $item->value($bodyTerm, ['lang' => ($valueLang)]) : $item->displayDescription(null, ($valueLang));
     if ($body instanceof ValueRepresentation) {
         $body = $body->asHtml();
     }
