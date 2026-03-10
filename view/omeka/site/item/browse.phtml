@@ -121,7 +121,7 @@ if (is_array($decoration) && in_array('media', $decoration)) {
 
     <?php
     foreach ($items as $item):
-            $body = $bodyTerm ? $item->value($bodyTerm, ['lang' => ($valueLang)]) : $item->displayDescription(null, ($valueLang));
+        $body = $bodyTerm ? $item->value($bodyTerm, ['lang' => $valueLang]) : $escape($item->displayDescription(null, $valueLang));
     if ($body instanceof ValueRepresentation) {
         $body = $body->asHtml();
     }
@@ -144,7 +144,7 @@ if (is_array($decoration) && in_array('media', $decoration)) {
                 <div class="resource__meta <?php echo ($isGrid) ? '' : 'media-object-section'; ?>">
                     <?php echo $item->link($item->displayTitle(null, $valueLang)); ?>
                     <?php if ($body): ?>
-                        <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $escape($body); ?></div>
+                        <div class="description <?php echo ($bodyTruncate) ? $bodyTruncate : ''; ?>"><?php echo $body; ?></div>
                     <?php endif; ?>
                 </div>
             </div>
